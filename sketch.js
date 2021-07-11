@@ -3,7 +3,6 @@ var START=0;
 var PLAY=1;
 var END=2;
 var gameState=START;
-var blcks=[];
 var blockGroup,bulletGroup;
 var score=0;
 
@@ -28,12 +27,15 @@ function preload(){
  function draw(){
      background(bgImg);
      if(gameState===START){
+          
          textSize(24);
          fill("black");
          text("Press space to start",250,200);
+          
          if(keyDown("space")){
              gameState=PLAY;
          }
+          
      }
      if(gameState===PLAY){
         spawnBlocks();
@@ -58,12 +60,10 @@ function preload(){
             jumper.collide(blockGroup);
             gameState=PLAY;
           }
-
           
         if(bulletGroup.isTouching(jumper)){
             score=score+10;
             bulletGroup.destroyEach();
-        
         }
 
         if(jumper.y>=630){
